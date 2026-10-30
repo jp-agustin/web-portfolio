@@ -8,39 +8,43 @@ const stack = [
   { level: 'AI tools', items: 'Claude, Cursor, MCP' },
 ];
 const principles = [
-  { title: 'Hands-on, even when leading', text: "I write code every sprint and review a lot. It's how I stay close to the work." },
-  { title: 'Plan before building', text: 'Time spent understanding the problem saves more time later, for people and for AI tools.' },
+  { title: 'Lead close to the work', text: 'I write code every sprint and review a lot. It keeps my decisions grounded and my reviews useful.' },
+  { title: 'Trust by default', text: 'Most of my teams have been spread across countries. Trust is the starting point, not something people have to earn first.' },
+  { title: 'Grow people through real ownership', text: 'Chances to lead, to share with the wider team, and time to explore. Three engineers I mentored grew into senior roles.' },
+  { title: 'Connect engineering to the business', text: 'I work with product, business, and leadership on what to build, and explain trade-offs in terms of impact.' },
   { title: 'Targeted changes over rewrites', text: 'If a critical system works, I fix where it hurts instead of starting over.' },
-  { title: 'Trust in remote teams', text: "Most of my teams have been spread across countries. Trust is the default, not something people have to earn first." },
-  { title: 'Grow people through real ownership', text: 'Chances to lead, to share, and time to explore.' },
 ];
 ---
 
-<Base title="About" description="About John Patrick Agustin, senior full-stack engineer and former Engineering Manager.">
+<Base title="About" description="About John Patrick Agustin, senior engineer and tech lead.">
   <section class="page-head wrap grid">
     <h1 data-reveal>About</h1>
-    <p class="lead" data-reveal>Senior full-stack engineer with 8+ years of shipping production systems in Go, React and TypeScript.</p>
+    <p class="lead" data-reveal>Senior engineer and tech lead. Eight years of shipping software, five of them at Ninja Van growing from founding engineer to Engineering Manager.</p>
     <aside data-reveal>
       <p class="dot">Available now</p>
       <p>Philippines (GMT+8)</p>
-      <p>Go · React · TypeScript</p>
+      <p>Led teams across Asia</p>
     </aside>
   </section>
 
   <section class="wrap grid">
     <div class="prose measure body-col" data-reveal>
       <p>
-        I started in 5G R&amp;D at Nokia, built software in Melbourne, then led a drone data platform in Singapore. At
-        Ninja Van I joined as a founding engineer on internal tools used across 1,000+ warehouses, and grew into
-        Engineering Manager of the platforms team: chat and notification systems handling hundreds of millions of events a
-        day, with a team across Singapore and India. Along the way I cut notification costs by over 60%, tripled Kafka
-        throughput at peak, and mentored three engineers into senior roles.
+        At Ninja Van I joined as one of two engineers on a new internal tools team and grew into Engineering Manager of the
+        platforms team: 5–7 engineers across Singapore and India. I led the team's technical decisions, worked with
+        product, business, and our CTO on what to build, and mentored three engineers into senior roles.
       </p>
       <p>
-        More recently I led frontend at an AI startup and set up AI-assisted development practices that actually stuck. I
-        also built an on-prem computer vision platform for a freelance client.
+        We owned the chat and notification systems that handle hundreds of millions of events a day. I still shipped code
+        every sprint, and together we cut notification costs by over 60% and tripled Kafka throughput at peak.
       </p>
-      <p>I'm hands-on first: I write the code, and when needed I lead the team around it.</p>
+      <p>
+        More recently I led a frontend team of four across Southeast Asia at an AI startup, and built an on-prem computer
+        vision platform for a freelance client.
+      </p>
+      <p>
+        Before that: 5G R&amp;D at Nokia, software in Melbourne, and leading a drone data platform in Singapore.
+      </p>
     </div>
   </section>
 
@@ -70,7 +74,7 @@ const principles = [
         </ul>
         <p data-reveal>
           Hourly or monthly contracts, part-time retainers, fixed-scope projects, or full-time contracts. I'm also open to
-          the right full-time role. Based in the Philippines, {SITE.timezone}
+          the right full-time role. Based in the Philippines, {SITE.timezone}{' '}
           <a href="/contact">Get in touch →</a>
         </p>
       </div>
@@ -90,10 +94,9 @@ const principles = [
   </section>
 
   <section class="wrap grid split">
-    <h2 data-reveal>Outside work</h2>
+    <h2 data-reveal>Education</h2>
     <div class="content">
-      <p class="lead" data-reveal>I'm launching a food product business and building apps of my own. More on both here soon.</p>
-      <p class="muted" data-reveal>BS Computer Engineering, University of the Philippines Diliman</p>
+      <p class="lead" data-reveal>BS Computer Engineering, University of the Philippines Diliman</p>
     </div>
   </section>
 </Base>

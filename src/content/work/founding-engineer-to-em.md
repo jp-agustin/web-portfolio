@@ -10,7 +10,7 @@ team: Grew from one of two engineers on a new team to leading 5–7 engineers ac
 stack: [React, Node.js, Go, Flutter, Electron]
 duration: Dec 2020 – Oct 2025
 featured: true
-order: 4
+order: 2
 ---
 
 ## Starting out: two engineers and no process (2020–2021)

@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'John Patrick Agustin',
   description:
-    'Senior full-stack engineer (Go, React, TypeScript). I build production systems and lead the teams around them.',
+    'Senior engineer and tech lead (Go, React, TypeScript). I build production systems and grow the teams that run them.',
   availability: 'Currently available for part-time, contract, and full-time work.',
   timezone: 'GMT+8, in step with most of Asia-Pacific and flexible with hours for teams in Europe and the US.',
   email: 'agustin.johnpatrick@gmail.com',
@@ -10,9 +10,9 @@ export const SITE = {
 };
 
 export const WAYS = [
-  { title: 'Contract senior engineering', text: 'Go, Node.js, React, TypeScript; event-driven systems; frontend architecture.' },
+  { title: 'Hands-on tech lead', text: 'Lead a team or project while writing code: architecture, delivery, mentoring, and working with product.' },
+  { title: 'Senior engineering', text: 'Join your team as a senior engineer: Go, Node.js, React, TypeScript; event-driven systems; frontend architecture.' },
   { title: 'AI and platform work', text: 'AI-assisted development setup, computer vision and ML infrastructure, cost and performance optimization.' },
-  { title: 'Fractional tech lead', text: 'Team setup, mentoring, architecture, and delivery.' },
 ];
 
 export const HISTORY = [

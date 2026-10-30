@@ -111,9 +111,8 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
 /* Page heads (home hero and inner pages) */
 .hero { padding-block: clamp(2rem, 6vh, 4rem) var(--section); }
 .hero h1 { font-size: var(--step-display); letter-spacing: -0.045em; line-height: 0.92; grid-column: 1 / -1; margin-bottom: clamp(1.25rem, 0.75rem + 1.5vw, 2.5rem); }
-.hero .statement { text-wrap: pretty; grid-column: 1 / 8; font-size: clamp(1.375rem, 1rem + 1.2vw, 2rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.12; margin: 0; }
-.hero .meta { grid-column: 9 / -1; align-self: end; color: var(--muted); }
-.hero .meta p { margin: 0 0 0.35rem; }
+.hero .statement { text-wrap: pretty; grid-column: 1 / 9; font-size: clamp(1.375rem, 1rem + 1.2vw, 2rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.12; margin: 0; }
+.hero .meta { grid-column: 1 / 9; margin: 1rem 0 0; color: var(--muted); }
 .page-head { padding-block: clamp(2rem, 6vh, 4rem) clamp(2rem, 1.5rem + 2vw, 3.5rem); }
 .page-head.grid > :not(aside) { grid-column: 1 / 9; }
 .page-head aside { grid-column: 9 / -1; grid-row: 1 / span 2; align-self: end; color: var(--muted); }
@@ -129,7 +128,6 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
 
 @media (max-width: 52rem) {
   .hero .statement, .hero .meta { grid-column: 1 / -1; }
-  .hero .meta { margin-top: 2rem; }
 }
 
 /* Case studies: the figure carries the row */

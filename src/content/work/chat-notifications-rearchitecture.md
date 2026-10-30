@@ -10,7 +10,7 @@ team: 7 engineers
 stack: [Go, Kafka, Kubernetes, KEDA]
 duration: Started during a peak period, when monitoring showed the bottleneck
 featured: true
-order: 3
+order: 4
 ---
 
 ## Context

@@ -10,7 +10,7 @@ team: Solo on the AI platform; coordinated with the client's app team for integr
 stack: [Python, CUDA, YOLO, Docker]
 duration: Aug – Dec 2025, part-time
 featured: true
-order: 2
+order: 3
 ---
 
 ## Context
