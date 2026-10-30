@@ -1,0 +1,96 @@
+---
+// The address itself copies on click; many visitors use webmail, so mailto: is only the no-script fallback.
+import { SITE } from '../site';
+
+const { class: className } = Astro.props as { class?: string };
+---
+
+<span class:list={['copy-email', className]}>
+  <a class="address" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  <span class="hint" aria-hidden="true">Copy</span>
+</span>
+
+<script>
+  // One shared toast for every address on the page; role=status also announces it to screen readers.
+  let toast: HTMLElement | undefined;
+  let timer: number | undefined;
+  function notify(message: string, ok: boolean) {
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'copy-toast';
+      toast.setAttribute('role', 'status');
+      document.body.append(toast);
+    }
+    toast.textContent = message;
+    toast.dataset.ok = String(ok);
+    toast.classList.add('show');
+    clearTimeout(timer);
+    timer = window.setTimeout(() => toast!.classList.remove('show'), 2000);
+  }
+
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('.copy-email .address')) {
+    if (!navigator.clipboard) continue; // no clipboard API: keep the plain mailto: link
+    const email = link.textContent!.trim();
+    link.setAttribute('role', 'button');
+    link.setAttribute('aria-label', `Copy email address ${email}`);
+    link.closest('.copy-email')!.classList.add('ready');
+    link.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await navigator.clipboard.writeText(email);
+        notify('Email address copied', true);
+      } catch {
+        notify("Couldn't copy. Select the address instead.", false);
+      }
+    });
+    link.addEventListener('keydown', (e) => {
+      if (e.key === ' ') { e.preventDefault(); link.click(); } // role=button also activates on Space
+    });
+  }
+</script>
+
+<style>
+  .copy-email { position: relative; display: inline-block; }
+  .address { overflow-wrap: anywhere; }
+  /* Sits above the address like a tooltip, so it never pushes neighbouring links */
+  .hint {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    line-height: 1.2;
+    font-size: var(--step-small);
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 150ms;
+  }
+  .ready .hint { display: inline; }
+  .ready .address { cursor: copy; }
+  .ready:hover .hint, .ready:focus-within .hint { opacity: 1; }
+
+  :global(.copy-toast) {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    z-index: 20;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: var(--step-small);
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 0.18);
+    opacity: 0;
+    transform: translate(-50%, 0.75rem);
+    pointer-events: none;
+    transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+  }
+  :global(.copy-toast.show) { opacity: 1; transform: translate(-50%, 0); }
+  /* Toast sits on the ink colour, so the check takes the opposite theme's accent */
+  :global(.copy-toast[data-ok='true']::before) { content: '✓ '; color: light-dark(#8fd3cc, #0f5257); }
+</style>

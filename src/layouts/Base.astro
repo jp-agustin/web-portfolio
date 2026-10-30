@@ -1,14 +1,16 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../site';
+import CopyEmail from '../components/CopyEmail.astro';
 
 interface Props {
   title?: string;
   description?: string;
   type?: 'website' | 'article';
+  footer?: boolean;
 }
 
-const { title, description = SITE.description, type = 'website' } = Astro.props;
+const { title, description = SITE.description, type = 'website', footer = true } = Astro.props;
 const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
@@ -71,17 +73,19 @@ const nav = [
     <main id="main">
       <slot />
     </main>
-    <footer class="site-footer wrap">
-      <div class="row">
-        <p class="dot">{SITE.availability}</p>
-        <p class="links">
-          <a href={`mailto:${SITE.email}`}>Email</a>
-          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href={SITE.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
-      </div>
-      <p class="copy">© {new Date().getFullYear()} {SITE.name}</p>
-    </footer>
+    {footer && (
+      <footer class="site-footer f-sand">
+        <div class="wrap">
+          <h2>Working on something?</h2>
+          <p class="invite">I'd like to hear about it.</p>
+          <p class="primary"><CopyEmail /></p>
+          <p class="secondary">
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+            <span>© {new Date().getFullYear()} {SITE.name}</span>
+          </p>
+        </div>
+      </footer>
+    )}
     <script>
       // Theme toggle: flips between light and dark, remembering the choice for this browser.
       const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle')!;

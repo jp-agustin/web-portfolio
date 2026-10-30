@@ -4,7 +4,7 @@
   --bg: light-dark(#f5f0e6, #1b1a17);
   --sand: light-dark(#e8dcc8, #27241e);
   --sage: light-dark(#d6dccb, #1f231e);
-  --surface: light-dark(rgb(255 255 255 / 0.45), rgb(255 255 255 / 0.07));
+  --surface: light-dark(rgb(22 21 18 / 0.07), rgb(255 255 255 / 0.08));
   --ink: light-dark(#161512, #ece9e2);
   --muted: light-dark(#5a5650, #a8a49b);
   --accent: light-dark(#0f5257, #8fd3cc);
@@ -238,11 +238,13 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
 .next:hover strong { text-decoration: underline; text-decoration-color: var(--accent); }
 
 /* Footer */
-.site-footer { padding-block: var(--section) 1.5rem; overflow: hidden; }
-.site-footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; font-weight: 600; }
-.site-footer .row p { margin: 0; }
-.site-footer .links { display: flex; gap: 1.5rem; }
-.site-footer .copy { margin: 2.5rem 0 0; color: var(--muted); font-size: var(--step-small); }
+.site-footer { margin-top: var(--section); padding-block: var(--section) 2rem; }
+main:has(> :last-child.band) + .site-footer { margin-top: 0; } /* a closing colour band already separates them */
+.site-footer h2 { margin-bottom: 0.75rem; }
+.site-footer .invite { margin: 0 0 2rem; color: var(--muted); font-size: var(--step-lead); line-height: 1.25; letter-spacing: -0.02em; }
+.site-footer .primary { margin: 0; font-size: clamp(1.25rem, 0.5rem + 3vw, 2.75rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
+.site-footer .secondary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; margin: clamp(2.5rem, 2rem + 2vw, 4rem) 0 0; font-weight: 600; }
+.site-footer .secondary span { color: var(--muted); font-weight: 400; font-size: var(--step-small); }
 
 /* Entrance: only when script runs, so content never stays hidden without it */
 .js [data-reveal] {

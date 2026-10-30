@@ -1,22 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE } from '../site';
+import { SITE, WAYS } from '../site';
+import CopyEmail from '../components/CopyEmail.astro';
 ---
 
-<Base title="Contact" description="How to reach John Patrick Agustin.">
-  <section class="page-head wrap">
-    <h1 data-reveal>Contact</h1>
-    <p class="lead" data-reveal>{SITE.availability} A short note on what you're working on is plenty.</p>
+<Base title="Contact" description="How to reach John Patrick Agustin." footer={false}>
+  <section class="page-head wrap grid">
+    <h1 data-reveal>Let's talk</h1>
+    <p class="lead" data-reveal>
+      Tell me a bit about what you're working on: the problem, the team, the timeline. A short note is plenty.
+    </p>
+    <aside data-reveal>
+      <strong class="now">Available now</strong>
+      <p>For part-time, contract, and full-time work.</p>
+      <p>Based in the Philippines, {SITE.timezone}</p>
+    </aside>
   </section>
-  <section class="wrap">
-    <p data-reveal><a class="email" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
-    <p class="lead" data-reveal><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn →</a></p>
-    <p class="muted dot" data-reveal>GMT+8, same hours as Singapore and Australia, overlaps with Europe and the US. Based in the Philippines.</p>
+  <section class="wrap grid pb">
+    <div class="reach">
+      <p data-reveal><CopyEmail class="email" /></p>
+      <p class="lead" data-reveal><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn →</a></p>
+    </div>
+    <div class="ways" data-reveal>
+      <h2>What I can help with</h2>
+      <ul class="rows stacked">
+        {WAYS.map((w) => (
+          <li>
+            <span class="what">{w.title}</span>
+            <p class="sub">{w.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 </Base>
 
 <style>
-  .email {
+  .page-head aside .now { font-size: var(--step-head); color: var(--accent); }
+  .reach { grid-column: 1 / 9; }
+  .ways { grid-column: 9 / -1; }
+  .ways h2 { font-size: var(--step-lead); margin-bottom: 0.5rem; }
+  .ways .what { font-size: var(--step-body); }
+  @media (max-width: 52rem) {
+    .reach, .ways { grid-column: 1 / -1; }
+    .ways { margin-top: 2.5rem; }
+  }
+  :global(.email .address) {
     font-size: clamp(1.375rem, 0.5rem + 3.2vw, 3.5rem);
     font-weight: 700;
     letter-spacing: -0.05em;

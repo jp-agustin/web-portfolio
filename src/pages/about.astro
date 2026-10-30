@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { SITE, WAYS } from '../site';
 
 const stack = [
   { level: 'Production-deep', items: 'Go, Node.js, React, TypeScript, Kafka, Redis, MySQL/TiDB, Docker' },
@@ -12,11 +13,6 @@ const principles = [
   { title: 'Targeted changes over rewrites', text: 'If a critical system works, I fix where it hurts instead of starting over.' },
   { title: 'Trust in remote teams', text: "Most of my teams have been spread across countries. Trust is the default, not something people have to earn first." },
   { title: 'Grow people through real ownership', text: 'Chances to lead, to share, and time to explore.' },
-];
-const ways = [
-  { title: 'Contract senior engineering', text: 'Go, Node.js, React, TypeScript; event-driven systems; frontend architecture.' },
-  { title: 'AI and platform work', text: 'AI-assisted development setup, computer vision and ML infrastructure, cost and performance optimization.' },
-  { title: 'Fractional tech lead', text: 'Team setup, mentoring, architecture, and delivery.' },
 ];
 ---
 
@@ -65,7 +61,7 @@ const ways = [
       <h2 data-reveal>Ways to work together</h2>
       <div class="content">
         <ul class="rows stacked">
-          {ways.map((w) => (
+          {WAYS.map((w) => (
             <li data-reveal>
               <span class="what">{w.title}</span>
               <p class="sub">{w.text}</p>
@@ -74,8 +70,8 @@ const ways = [
         </ul>
         <p data-reveal>
           Hourly or monthly contracts, part-time retainers, fixed-scope projects, or full-time contracts. I'm also open to
-          the right full-time role. Based in the Philippines (GMT+8): full overlap with Singapore and Australia, and 4+
-          hours with Europe and the US. <a href="/contact">Get in touch →</a>
+          the right full-time role. Based in the Philippines, {SITE.timezone}
+          <a href="/contact">Get in touch →</a>
         </p>
       </div>
     </div>
