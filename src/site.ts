@@ -15,11 +15,56 @@ export const WAYS = [
   { title: 'AI and platform work', text: 'AI-assisted development setup, computer vision and ML infrastructure, cost and performance optimization.' },
 ];
 
+// Dates are YYYY-MM. Roles are newest first. `earlier` entries render as compact one-line rows; `work` links case studies.
 export const HISTORY = [
-  { years: 'Jan – Jun 2026', company: 'Ailytics', role: 'Lead Frontend Engineer' },
-  { years: '2025', company: 'Freelance', role: 'Software Engineer & Tech Consultant' },
-  { years: '2020 – 2025', company: 'Ninja Van', role: 'Software Engineer → Senior → Engineering Manager' },
-  { years: '2019 – 2020', company: 'Avetics', role: 'Drone Platform Lead Developer' },
-  { years: '2018 – 2019', company: 'Ethical Prospecting (Melbourne)', role: 'Full-Stack Developer' },
-  { years: '2017 – 2018', company: 'Nokia', role: '5G R&D Engineer' },
+  {
+    company: 'Ailytics',
+    about: 'AI video safety monitoring',
+    location: 'Singapore',
+    mode: 'Remote',
+    roles: [{ title: 'Lead Frontend Engineer', start: '2026-01', end: '2026-06' }],
+  },
+  {
+    company: 'Freelance',
+    mode: 'Remote, part-time',
+    work: [{ slug: 'on-prem-vision-ai', label: 'Drone inspection AI, cloud to on-prem' }],
+    roles: [{ title: 'Software Engineer & Tech Consultant', start: '2025-08', end: '2025-12' }],
+  },
+  {
+    company: 'Ninja Van',
+    about: 'logistics across Southeast Asia',
+    location: 'Singapore',
+    mode: 'Onsite',
+    work: [
+      { slug: 'notification-costs', label: 'Notification costs' },
+      { slug: 'founding-engineer-to-em', label: 'Founding engineer to EM' },
+      { slug: 'chat-notifications-rearchitecture', label: 'Notification throughput' },
+    ],
+    roles: [
+      { title: 'Engineering Manager / Tech Lead', team: 'Platforms and Shared Services', start: '2023-01', end: '2025-10' },
+      { title: 'Senior Software Engineer', team: 'Tooling and Automation', start: '2021-07', end: '2022-12' },
+      { title: 'Software Engineer', team: 'Tooling and Automation', start: '2020-12', end: '2021-06' },
+    ],
+  },
+  {
+    company: 'Avetics',
+    location: 'Singapore',
+    mode: 'Onsite',
+    earlier: true,
+    roles: [{ title: 'Drone Platform Lead Developer', start: '2019-07', end: '2020-11' }],
+  },
+  {
+    company: 'Ethical Prospecting',
+    location: 'Melbourne',
+    mode: 'Onsite',
+    earlier: true,
+    roles: [{ title: 'Full-Stack Software Developer', start: '2018-09', end: '2019-06' }],
+  },
+  {
+    company: 'Nokia',
+    location: 'Quezon City, Philippines',
+    mode: 'Onsite',
+    earlier: true,
+    roles: [{ title: '5G R&D Engineer', start: '2017-07', end: '2018-03' }],
+  },
 ];

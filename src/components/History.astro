@@ -1,0 +1,76 @@
+---
+import { HISTORY } from '../site';
+
+type Job = (typeof HISTORY)[number];
+
+const years = (start: string, end: string) => {
+  const [a, b] = [start.slice(0, 4), end.slice(0, 4)];
+  return a === b ? a : `${a}–${b.slice(2)}`; // 2020–25
+};
+const span = (job: Job) => years(job.roles.at(-1)!.start, job.roles[0].end);
+// Onsite is the default, so only a different arrangement is worth saying.
+const where = (job: Job) =>
+  ['location' in job && job.location, job.mode !== 'Onsite' && job.mode.toLowerCase()].filter(Boolean).join(', ');
+---
+
+<ol class="history">
+  {HISTORY.map((job) =>
+    'earlier' in job ? (
+      <li class="minor" data-reveal>
+        <span class="when">{span(job)}</span>
+        <p>{job.roles[0].title}, <strong>{job.company}</strong> · {where(job)}</p>
+      </li>
+    ) : (
+      <li data-reveal>
+        <span class="when">{span(job)}</span>
+        <div>
+          <h3>{job.roles[0].title}</h3>
+          <p class="org">
+            <strong>{job.company}</strong>{'about' in job && <>, {job.about}</>} · {where(job)}
+          </p>
+          {job.roles.length > 1 && (
+            <p class="path" aria-label={`Promotions at ${job.company}`}>
+              {job.roles.toReversed().map((r, i) => (
+                <>{i > 0 && <span class="arrow" aria-hidden="true"> → </span>}<span class:list={{ now: i === job.roles.length - 1 }}>{i > 0 ? r.title.replace(' / Tech Lead', '').replace('Senior Software Engineer', 'Senior') : r.title} <span class="yr">{r.start.slice(0, 4)}</span></span></>
+              ))}
+            </p>
+          )}
+          {'work' in job && (
+            <p class="cases">
+              Case studies:{' '}
+              {job.work.map((w, i) => (
+                <>{i > 0 && ' · '}<a href={`/work/${w.slug}`}>{w.label}</a></>
+              ))}
+            </p>
+          )}
+        </div>
+      </li>
+    ),
+  )}
+</ol>
+
+<style>
+  .history { list-style: none; margin: 0; padding: 0; max-width: 60rem; }
+  .history > li { display: grid; grid-template-columns: 9rem 1fr; gap: 0.35rem 2rem; padding-block: 1.5rem; align-items: baseline; }
+  .history > li.minor { padding-block: 0.3rem; color: var(--muted); }
+  .history > li:not(.minor) + li.minor { margin-top: 1rem; }
+  .minor p { margin: 0; }
+  /* Years carry the rhythm: large but light, like the case study figures */
+  .when { font-size: var(--step-lead); font-weight: 400; letter-spacing: -0.04em; line-height: 1; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .minor .when { font-size: var(--step-body); letter-spacing: 0; }
+  h3 { font-size: var(--step-lead); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+  .org { margin: 0.4rem 0 0; color: var(--muted); }
+  .org strong, .minor strong { color: var(--ink); font-weight: 600; }
+  /* Promotion path: earliest to latest, current role in full ink */
+  .path { margin: 0.6rem 0 0; color: var(--muted); }
+  .path > span:not(.arrow) { white-space: nowrap; } /* wrap between steps, never inside one */
+  .path .now { color: var(--ink); font-weight: 600; }
+  .path .yr { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .path .arrow { color: var(--accent); }
+  .cases { margin: 0.9rem 0 0; color: var(--muted); }
+  .cases a { color: var(--ink); }
+  @media (max-width: 30rem) {
+    .history > li { grid-template-columns: 1fr; }
+    .history > li.minor { gap: 0; }
+  }
+</style>

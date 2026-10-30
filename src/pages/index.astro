@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
 import WritingList from '../components/WritingList.astro';
 import TileDemo from '../components/TileDemo.astro';
-import { HISTORY, SITE } from '../site';
+import History from '../components/History.astro';
+import { SITE } from '../site';
 import { getWork, getWriting } from '../content';
 
 const work = (await getWork()).filter((w) => w.data.featured);
@@ -29,17 +30,9 @@ const writing = (await getWriting()).slice(0, 3);
     <div class="wrap"><TileDemo /></div>
   </section>
 
-  <section class="band wrap grid split">
+  <section class="band wrap">
     <h2 data-reveal>History</h2>
-    <ul class="rows content">
-      {HISTORY.map((h) => (
-        <li data-reveal>
-          <span class="when">{h.years}</span>
-          <span class="what">{h.company}</span>
-          <p class="sub">{h.role}</p>
-        </li>
-      ))}
-    </ul>
+    <History />
   </section>
 
   {writing.length > 0 && (

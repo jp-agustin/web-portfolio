@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 const { items } = Astro.props as { items: CollectionEntry<'writing'>[] };
-const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 ---
 
 <ul class="rows">

@@ -31,6 +31,7 @@
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font: 400 var(--step-body) / 1.5 var(--font);
@@ -88,13 +89,13 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
   font-weight: 600;
 }
 .site-name { text-decoration: none; }
-.site-header nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); }
+.site-header nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem clamp(0.85rem, 2vw, 2rem); }
 .theme-toggle {
   display: inline-grid;
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  margin: -0.75rem -0.75rem -0.75rem 0;
+  margin-block: -0.75rem; /* keeps the 44px tap target without pushing past the page edge */
   border: 0;
   border-radius: 50%;
   background: none;
