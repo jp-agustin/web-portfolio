@@ -15,18 +15,27 @@ const { Content } = await render(entry);
 
 <Base title={data.title} description={data.outcome} type="article">
   <article>
-    <h1>{data.title}</h1>
-    <dl class="summary-box">
-      <dt>Outcome</dt><dd>{data.outcome}</dd>
-      <dt>Company</dt><dd>{data.company}</dd>
-      <dt>Role</dt><dd>{data.role}</dd>
-      <dt>Team</dt><dd>{data.team}</dd>
-      <dt>Stack</dt><dd>{data.stack.join(', ')}</dd>
-      <dt>When</dt><dd>{data.year} · {data.duration}</dd>
-    </dl>
-    <div class="prose"><Content /></div>
+    <header class="page-head wrap grid">
+      <h1 class="long" data-reveal>{data.title}</h1>
+      <p class="lead" data-reveal>{data.outcome}</p>
+      <aside data-reveal><strong>{data.figure}</strong>{data.figureLabel}</aside>
+    </header>
+    <section class="facts f-sand" aria-label="Summary">
+      <dl class="summary wrap">
+        <div><dt>Company</dt><dd>{data.company}</dd></div>
+        <div><dt>Role</dt><dd>{data.role}</dd></div>
+        <div><dt>Team</dt><dd>{data.team}</dd></div>
+        <div><dt>Stack</dt><dd>{data.stack.join(', ')}</dd></div>
+        <div><dt>When</dt><dd>{data.year} · {data.duration}</dd></div>
+      </dl>
+    </section>
+    <div class="band wrap grid">
+      <div class="prose measure body-col" data-reveal><Content /></div>
+    </div>
   </article>
   {next.id !== entry.id && (
-    <p class="muted small">Next: <a href={`/work/${next.id}`}>{next.data.title}</a></p>
+    <nav class="wrap" aria-label="Next case study">
+      <a class="next" href={`/work/${next.id}`}><span>Next case study</span><strong>{next.data.title} →</strong></a>
+    </nav>
   )}
 </Base>

@@ -1,0 +1,111 @@
+---
+// Live demo of the slicing from the YOLO article: a 5472×3648 drone frame cut into overlapping tiles.
+const W = 5472;
+const H = 3648;
+const OVERLAP = 0.2;
+const MODEL = 1024; // model input size
+const DEFECT = 40; // px, a small crack in the full frame
+const SIZES = [512, 1024, 2048];
+const START = 1024;
+
+function tiles(t: number) {
+  const step = t * (1 - OVERLAP);
+  const cols = Math.ceil((W - t) / step) + 1;
+  const rows = Math.ceil((H - t) / step) + 1;
+  const out = [];
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++) out.push({ x: Math.min(c * step, W - t), y: Math.min(r * step, H - t) });
+  return out;
+}
+const readout = (t: number) =>
+  `${tiles(t).length} tiles of ${t} px with 20% overlap. A ${DEFECT} px crack reaches the model at ${Math.round((DEFECT * MODEL) / t)} px, instead of about ${Math.round((DEFECT * MODEL) / W)} px when the whole frame is shrunk to ${MODEL}.`;
+---
+
+<div class="tile-demo grid" data-w={W} data-h={H} data-overlap={OVERLAP} data-model={MODEL} data-defect={DEFECT}>
+  <div class="text">
+    <h2 data-reveal>Slicing a drone frame</h2>
+    <p class="intro" data-reveal>
+      Drone photos are about 20 megapixels, and the defects that matter can be a few dozen pixels wide. Shrink the frame to
+      fit the model and they disappear. Cut it into tiles and they survive.
+    </p>
+    <fieldset hidden>
+      <legend class="sr-only">Tile size</legend>
+      {SIZES.map((s) => (
+        <label><input type="radio" name="tile" value={s} checked={s === START} /> {s} px tiles</label>
+      ))}
+    </fieldset>
+    <p class="readout" aria-live="polite">{readout(START)}</p>
+    <p class="small muted">
+      <a href="/writing/tiled-yolo-high-res">How I built it →</a><br />
+      Photo: <a href="https://commons.wikimedia.org/wiki/File:Cornerstone_Christian_School_-_Gymnasium_Construction_-_March_2018.jpg" target="_blank" rel="noopener noreferrer">Bellosaurus</a>, CC BY-SA 4.0
+    </p>
+  </div>
+  <div class="frame" data-reveal>
+    <img
+      src="/images/aerial-construction.jpg"
+      width="1600"
+      height="1016"
+      alt="Aerial drone photo of a school gymnasium under construction, its steel frame open from above."
+      loading="lazy"
+      decoding="async"
+    />
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+      {tiles(START).map(({ x, y }) => <rect x={x} y={y} width={START} height={START} />)}
+    </svg>
+  </div>
+</div>
+
+<script>
+  for (const fig of document.querySelectorAll<HTMLElement>('.tile-demo')) {
+    const { w, h, overlap, model, defect } = Object.fromEntries(
+      Object.entries(fig.dataset).map(([k, v]) => [k, Number(v)]),
+    );
+    const svg = fig.querySelector('svg')!;
+    const out = fig.querySelector('.readout')!;
+    const set = fig.querySelector('fieldset')!;
+    set.hidden = false;
+    set.addEventListener('change', (e) => {
+      const t = Number((e.target as HTMLInputElement).value);
+      const step = t * (1 - overlap);
+      const cols = Math.ceil((w - t) / step) + 1;
+      const rows = Math.ceil((h - t) / step) + 1;
+      let rects = '';
+      for (let r = 0; r < rows; r++)
+        for (let c = 0; c < cols; c++)
+          rects += `<rect x="${Math.min(c * step, w - t)}" y="${Math.min(r * step, h - t)}" width="${t}" height="${t}"/>`;
+      svg.innerHTML = rects;
+      out.textContent = `${cols * rows} tiles of ${t} px with 20% overlap. A ${defect} px crack reaches the model at ${Math.round((defect * model) / t)} px, instead of about ${Math.round((defect * model) / w)} px when the whole frame is shrunk to ${model}.`;
+    });
+  }
+</script>
+
+<style>
+  .text { grid-column: 1 / 5; align-self: center; }
+  .intro { margin: 0 0 1.5rem; }
+  .frame { grid-column: 5 / -1; position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink); }
+  .frame img, .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .frame img { object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(0.9); }
+  .frame :global(rect) { fill: #8fd3cc; fill-opacity: 0.08; stroke: #8fd3cc; stroke-width: 16; transition: opacity 200ms; }
+  fieldset { display: flex; flex-wrap: wrap; gap: 0.5rem; border: 0; padding: 0; margin: 0 0 1rem; }
+  label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    background: var(--surface);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 150ms, color 150ms;
+  }
+  label:hover { background: light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.14)); }
+  label:has(input:checked) { background: var(--ink); color: var(--bg); }
+  label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+  input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .readout { font-weight: 600; margin: 0 0 1.5rem; }
+  @media (max-width: 52rem) {
+    .text, .frame { grid-column: 1 / -1; }
+    .frame { margin-top: 2rem; }
+  }
+</style>

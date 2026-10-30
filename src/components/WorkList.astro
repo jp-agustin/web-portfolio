@@ -4,12 +4,20 @@ import type { CollectionEntry } from 'astro:content';
 const { items } = Astro.props as { items: CollectionEntry<'work'>[] };
 ---
 
-<ul class="list">
+<ul class="cases">
   {items.map(({ id, data }) => (
-    <li>
-      <a class="title" href={`/work/${id}`}>{data.title}</a>
-      <p>{data.outcome}</p>
-      <p class="tags">{data.company} · {data.year} · {data.stack.join(', ')}</p>
+    <li data-reveal>
+      <a class="case" href={`/work/${id}`}>
+        <div class="fig">
+          <strong>{data.figure}</strong>
+          <span>{data.figureLabel}</span>
+        </div>
+        <div class="body">
+          <h3>{data.title}</h3>
+          <p>{data.outcome}</p>
+          <p class="tags">{data.company} · {data.year} · {data.stack.join(', ')}</p>
+        </div>
+      </a>
     </li>
   ))}
 </ul>

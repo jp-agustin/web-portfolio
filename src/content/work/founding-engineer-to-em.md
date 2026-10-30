@@ -1,6 +1,8 @@
 ---
 title: From founding engineer to Engineering Manager
 outcome: Internal tools used across 1,000+ warehouses, 3 engineers mentored to senior, a 50+ talk tech-sharing program
+figure: "1,000+"
+figureLabel: warehouses using tools we built
 company: Ninja Van
 year: 2020–2025
 role: Software Engineer → Senior Software Engineer → Engineering Manager / Tech Lead

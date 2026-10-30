@@ -1,6 +1,8 @@
 ---
 title: Tripling notification throughput at peak, without a rewrite
 outcome: 3x Kafka throughput at peak, 50% less log noise
+figure: "3×"
+figureLabel: Kafka throughput at peak
 company: Ninja Van
 year: 2023–2025
 role: Engineering Manager / Tech Lead

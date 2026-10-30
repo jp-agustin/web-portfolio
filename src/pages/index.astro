@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
 import WritingList from '../components/WritingList.astro';
-import { HISTORY } from '../site';
+import TileDemo from '../components/TileDemo.astro';
+import { HISTORY, SITE } from '../site';
 import { getWork, getWriting } from '../content';
 
 const work = (await getWork()).filter((w) => w.data.featured);
@@ -10,30 +11,47 @@ const writing = (await getWriting()).slice(0, 3);
 ---
 
 <Base>
-  <h1>I'm John Patrick, a senior full-stack engineer. I build production systems and lead the teams around them.</h1>
-  <p class="muted">
-    Go · React · TypeScript. 8+ years, most recently at Ninja Van and Ailytics. Below is some of the work and what I
-    learned from it.
-  </p>
+  <section class="hero wrap grid">
+    <h1 data-reveal>{SITE.name}</h1>
+    <p class="statement" data-reveal>I'm a senior full-stack engineer. I build production systems and lead the teams around them.</p>
+    <div class="meta" data-reveal>
+      <p>Go · React · TypeScript · 8+ years</p>
+      <p>Most recently Ninja Van and Ailytics</p>
+      <p class="dot">Available now · GMT+8, same hours as Singapore and Australia, overlaps with Europe and the US</p>
+    </div>
+  </section>
 
-  <h2>Selected work</h2>
-  <WorkList items={work} />
+  <section class="wrap pb">
+    <h2 data-reveal>Selected work</h2>
+    <WorkList items={work} />
+  </section>
 
-  <h2>History</h2>
-  <dl class="history">
-    {HISTORY.map((h) => (
-      <div>
-        <dt>{h.years}</dt>
-        <dd>{h.company} · {h.role}</dd>
-      </div>
-    ))}
-  </dl>
+  <section class="f-sand band">
+    <div class="wrap"><TileDemo /></div>
+  </section>
+
+  <section class="band wrap grid split">
+    <h2 data-reveal>History</h2>
+    <ul class="rows content">
+      {HISTORY.map((h) => (
+        <li data-reveal>
+          <span class="when">{h.years}</span>
+          <span class="what">{h.company}</span>
+          <p class="sub">{h.role}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
 
   {writing.length > 0 && (
-    <>
-      <h2>Recent writing</h2>
-      <WritingList items={writing} />
-      <p><a href="/writing">All writing</a></p>
-    </>
+    <section class="f-sage band">
+      <div class="wrap grid split">
+        <h2 data-reveal>Recent writing</h2>
+        <div class="content">
+          <WritingList items={writing} />
+          <p data-reveal><a href="/writing">All writing →</a></p>
+        </div>
+      </div>
+    </section>
   )}
 </Base>

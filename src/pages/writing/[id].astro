@@ -14,13 +14,23 @@ const { Content } = await render(entry);
 
 <Base title={data.title} description={data.summary} type="article">
   <article>
-    <h1>{data.title}</h1>
-    <p class="tags">
-      <time datetime={data.date.toISOString()}>
-        {data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-      </time> · {data.pillar}
-    </p>
-    <div class="prose"><Content /></div>
+    <header class="page-head wrap grid">
+      <h1 class="long" data-reveal>{data.title}</h1>
+      <p class="lead" data-reveal>{data.summary}</p>
+      <aside data-reveal>
+        <p class="dot">{data.pillar}</p>
+        <p>
+          <time datetime={data.date.toISOString()}>
+            {data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+        </p>
+      </aside>
+    </header>
+    <div class="wrap grid">
+      <div class="prose measure body-col" data-reveal><Content /></div>
+    </div>
   </article>
-  <p class="muted small"><a href="/writing">← All writing</a></p>
+  <nav class="wrap band" aria-label="Writing">
+    <a class="next" href="/writing"><span>Keep reading</span><strong>All writing →</strong></a>
+  </nav>
 </Base>

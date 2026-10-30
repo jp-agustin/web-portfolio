@@ -1,6 +1,8 @@
 ---
 title: Cutting notification costs across Southeast Asia
 outcome: 60%+ lower notification costs, with better reliability
+figure: "60%+"
+figureLabel: lower notification costs
 company: Ninja Van
 year: 2023–2025
 role: Engineering Manager / Tech Lead

@@ -2,7 +2,7 @@ export const SITE = {
   name: 'John Patrick Agustin',
   description:
     'Senior full-stack engineer (Go, React, TypeScript). I build production systems and lead the teams around them.',
-  availability: 'Currently available for contract and full-time work.',
+  availability: 'Currently available for part-time, contract, and full-time work.',
   email: 'agustin.johnpatrick@gmail.com',
   linkedin: 'https://www.linkedin.com/in/agustinjohnpatrick',
   github: 'https://github.com/jp-agustin',

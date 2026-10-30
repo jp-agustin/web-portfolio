@@ -27,6 +27,8 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f0e6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1b1a17" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -36,6 +38,20 @@ const nav = [
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta name="twitter:card" content="summary" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      // Before paint: apply a saved theme choice (default follows the system) and enable entrance motion.
+      (() => {
+        const d = document.documentElement;
+        d.classList.add('js');
+        try {
+          const t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') d.dataset.theme = t;
+        } catch {}
+      })();
+    </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -47,19 +63,58 @@ const nav = [
             {item.label}
           </a>
         ))}
+        <button class="theme-toggle" type="button" aria-label="Switch colour theme" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
+        </button>
       </nav>
     </header>
-    <main id="main" class="wrap">
+    <main id="main">
       <slot />
     </main>
     <footer class="site-footer wrap">
-      <p>{SITE.availability}</p>
-      <p class="links">
-        <a href={`mailto:${SITE.email}`}>Email</a>
-        <a href={SITE.linkedin}>LinkedIn</a>
-        <a href={SITE.github}>GitHub</a>
-        <span>© {new Date().getFullYear()}</span>
-      </p>
+      <div class="row">
+        <p class="dot">{SITE.availability}</p>
+        <p class="links">
+          <a href={`mailto:${SITE.email}`}>Email</a>
+          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={SITE.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+      </div>
+      <p class="copy">© {new Date().getFullYear()} {SITE.name}</p>
     </footer>
+    <script>
+      // Theme toggle: flips between light and dark, remembering the choice for this browser.
+      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle')!;
+      const root = document.documentElement;
+      const current = () =>
+        (root.dataset.theme as 'light' | 'dark' | undefined) ??
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const label = () => toggle.setAttribute('aria-label', `Switch to ${current() === 'dark' ? 'light' : 'dark'} theme`);
+      toggle.hidden = false;
+      label();
+      toggle.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch {}
+        label();
+      });
+      matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+
+      // Staggered entrance per group; content is visible if this never runs (.js gates the hidden state).
+      const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const groups = new Map<Element | null, number>();
+      for (const el of els) {
+        const n = groups.get(el.parentElement) ?? 0;
+        el.style.setProperty('--i', String(n));
+        groups.set(el.parentElement, n + 1);
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        },
+        { rootMargin: '0px 0px -8% 0px' },
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>

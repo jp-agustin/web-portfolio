@@ -7,7 +7,12 @@ const work = await getWork();
 ---
 
 <Base title="Work" description="Case studies from my work in engineering and engineering leadership.">
-  <h1>Work</h1>
-  <p class="muted">Selected projects: the problem, the options, what we did, and what I'd do differently.</p>
-  <WorkList items={work} />
+  <section class="page-head wrap grid">
+    <h1 data-reveal>Work</h1>
+    <p class="lead" data-reveal>Selected projects: the problem, the options, what we did, and what I'd do differently.</p>
+    <aside data-reveal><strong>{work.length}</strong>case studies</aside>
+  </section>
+  <section class="wrap">
+    <WorkList items={work} />
+  </section>
 </Base>

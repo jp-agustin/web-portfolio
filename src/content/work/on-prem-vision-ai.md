@@ -1,6 +1,8 @@
 ---
 title: Moving a drone inspection AI from the cloud to on-prem GPUs
 outcome: Faster training and inference, more defects caught, no recurring cloud inference costs
+figure: "20 MP"
+figureLabel: drone frames, detected at full resolution
 company: A drone inspection company I'd worked for before (freelance)
 year: 2025
 role: Software Engineer & Tech Consultant (freelance)

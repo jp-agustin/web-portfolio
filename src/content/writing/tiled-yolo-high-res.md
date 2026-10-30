@@ -10,7 +10,7 @@ A typical drone inspection photo is 5472 × 3648 pixels, about 20 megapixels. Th
 
 Object detection models don't see 20 megapixels. YOLO trains and runs at something like 640 or 1024 pixels on the long side. Feed it the full photo and it gets downscaled 5 to 8 times, and a 40-pixel crack becomes 5 to 8 pixels. That's barely there.
 
-This post covers how I dealt with that while moving a drone inspection platform from a cloud vision service to on-prem GPUs ([case study](/work/on-prem-vision-ai)). The stack was Ultralytics YOLO11 for detection and [SAHI](https://github.com/obss/sahi) (Slicing Aided Hyper Inference) for tiling.
+This post covers how I dealt with that while moving a drone inspection platform from a cloud vision service to on-prem GPUs ([case study](/work/on-prem-vision-ai)). The stack was Ultralytics YOLO11 for detection and <a href="https://github.com/obss/sahi" target="_blank" rel="noopener noreferrer">SAHI</a> (Slicing Aided Hyper Inference) for tiling.
 
 ## Tiling fixes small objects and breaks big ones
 

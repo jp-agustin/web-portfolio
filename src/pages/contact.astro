@@ -4,11 +4,23 @@ import { SITE } from '../site';
 ---
 
 <Base title="Contact" description="How to reach John Patrick Agustin.">
-  <h1>Contact</h1>
-  <p>{SITE.availability}</p>
-  <p>The best way to reach me is email. A short note on what you're working on is plenty.</p>
-  <ul class="list">
-    <li><a class="title" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-    <li><a class="title" href={SITE.linkedin}>LinkedIn</a></li>
-  </ul>
+  <section class="page-head wrap">
+    <h1 data-reveal>Contact</h1>
+    <p class="lead" data-reveal>{SITE.availability} A short note on what you're working on is plenty.</p>
+  </section>
+  <section class="wrap">
+    <p data-reveal><a class="email" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p class="lead" data-reveal><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn →</a></p>
+    <p class="muted dot" data-reveal>GMT+8, same hours as Singapore and Australia, overlaps with Europe and the US. Based in the Philippines.</p>
+  </section>
 </Base>
+
+<style>
+  .email {
+    font-size: clamp(1.375rem, 0.5rem + 3.2vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+</style>

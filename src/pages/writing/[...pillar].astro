@@ -17,12 +17,18 @@ const items = pillar ? all.filter((w) => slug(w.data.pillar) === pillar) : all;
 ---
 
 <Base title="Writing" description="Articles and notes on engineering, decisions, AI, and building a business.">
-  <h1>Writing</h1>
-  <ul class="chips" aria-label="Filter by topic">
-    <li><a href="/writing" aria-current={!pillar ? 'page' : undefined}>All</a></li>
-    {pillars.map((p) => (
-      <li><a href={`/writing/${slug(p)}`} aria-current={pillar === slug(p) ? 'page' : undefined}>{p}</a></li>
-    ))}
-  </ul>
-  <WritingList items={items} />
+  <section class="page-head wrap grid">
+    <h1 data-reveal>Writing</h1>
+    <p class="lead" data-reveal>Engineering deep-dives, decisions, and what I'm learning about AI.</p>
+    <aside data-reveal><strong>{all.length}</strong>{all.length === 1 ? 'piece' : 'pieces'} so far</aside>
+  </section>
+  <section class="wrap">
+    <ul class="chips" aria-label="Filter by topic">
+      <li><a href="/writing" aria-current={!pillar ? 'page' : undefined}>All</a></li>
+      {pillars.map((p) => (
+        <li><a href={`/writing/${slug(p)}`} aria-current={pillar === slug(p) ? 'page' : undefined}>{p}</a></li>
+      ))}
+    </ul>
+    <WritingList items={items} />
+  </section>
 </Base>
