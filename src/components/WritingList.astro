@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+const { items } = Astro.props as { items: CollectionEntry<'writing'>[] };
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<ul class="list">
+  {items.map(({ id, data }) => (
+    <li>
+      <a class="title" href={`/writing/${id}`}>{data.title}</a>
+      <p>{data.summary}</p>
+      <p class="tags">
+        <time datetime={data.date.toISOString()}>{fmt(data.date)}</time> · {data.pillar}
+        {data.type === 'note' && ' · Note'}
+      </p>
+    </li>
+  ))}
+</ul>

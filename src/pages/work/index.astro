@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkList from '../../components/WorkList.astro';
+import { getWork } from '../../content';
+
+const work = await getWork();
+---
+
+<Base title="Work" description="Case studies from my work in engineering and engineering leadership.">
+  <h1>Work</h1>
+  <p class="muted">Selected projects: the problem, the options, what we did, and what I'd do differently.</p>
+  <WorkList items={work} />
+</Base>

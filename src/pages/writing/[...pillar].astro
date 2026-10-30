@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import WritingList from '../../components/WritingList.astro';
+import { getWriting } from '../../content';
+
+const slug = (p: string) => p.toLowerCase();
+
+export async function getStaticPaths() {
+  const pillars = [...new Set((await getWriting()).map((w) => w.data.pillar))];
+  return [{ params: { pillar: undefined } }, ...pillars.map((p) => ({ params: { pillar: p.toLowerCase() } }))];
+}
+
+const { pillar } = Astro.params;
+const all = await getWriting();
+const pillars = [...new Set(all.map((w) => w.data.pillar))];
+const items = pillar ? all.filter((w) => slug(w.data.pillar) === pillar) : all;
+---
+
+<Base title="Writing" description="Articles and notes on engineering, decisions, AI, and building a business.">
+  <h1>Writing</h1>
+  <ul class="chips" aria-label="Filter by topic">
+    <li><a href="/writing" aria-current={!pillar ? 'page' : undefined}>All</a></li>
+    {pillars.map((p) => (
+      <li><a href={`/writing/${slug(p)}`} aria-current={pillar === slug(p) ? 'page' : undefined}>{p}</a></li>
+    ))}
+  </ul>
+  <WritingList items={items} />
+</Base>

@@ -1,23 +1,14 @@
-# Online Portfolio (CURRENTLY UNDER DEVELOPMENT)
+# web-portfolio
 
-Hi all! I am John Patrick Agustin, a Junior Software Developer/Engineer.
+Personal site of John Patrick Agustin. Built with [Astro](https://astro.build), deployed on Vercel.
 
-This github repository will hold my official online portfolio source codes. It will be updated constantly as I learn new things and concepts about web development.
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
+```
 
-You can visit the live web site using this link: [jp-agustin.github.io](https://jp-agustin.github.io)
+Content lives in Markdown:
 
-## Concepts
-
-These are the following web development technologies/concepts used in the project:
-* HTML5
-* CSS3
-  * Keyframes
-  * BEM Architecture
-  * 7-1 Architecture
-  * Custom Grid with Floats (Will update to flexbox and CSS Grids soon...)
-* SASS
-  * SCSS syntax
-  * Variables, Nesting
-  * Mixins, Extends
-  * Functions
-* NPM
+- `src/content/work/` — case studies
+- `src/content/writing/` — articles and notes (`type: note`, `draft: true` hides from production)

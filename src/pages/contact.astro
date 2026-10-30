@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+---
+
+<Base title="Contact" description="How to reach John Patrick Agustin.">
+  <h1>Contact</h1>
+  <p>{SITE.availability}</p>
+  <p>The best way to reach me is email. A short note on what you're working on is plenty.</p>
+  <ul class="list">
+    <li><a class="title" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    <li><a class="title" href={SITE.linkedin}>LinkedIn</a></li>
+  </ul>
+</Base>

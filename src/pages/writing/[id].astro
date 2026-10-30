@@ -1,0 +1,26 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getWriting } from '../../content';
+
+export async function getStaticPaths() {
+  return (await getWriting()).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+
+<Base title={data.title} description={data.summary} type="article">
+  <article>
+    <h1>{data.title}</h1>
+    <p class="tags">
+      <time datetime={data.date.toISOString()}>
+        {data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </time> · {data.pillar}
+    </p>
+    <div class="prose"><Content /></div>
+  </article>
+  <p class="muted small"><a href="/writing">← All writing</a></p>
+</Base>

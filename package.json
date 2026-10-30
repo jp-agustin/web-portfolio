@@ -1,22 +1,15 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "Personal Portfolio of John Patrick Agustin",
-  "main": "index.js",
+  "name": "web-portfolio",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "compile:sass": "node-sass assets/sass/main.scss assets/css/style.css -w"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jp-agustin/jp-agustin.github.io.git"
-  },
-  "author": "John Patrick Agustin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jp-agustin/jp-agustin.github.io/issues"
-  },
-  "homepage": "https://github.com/jp-agustin/jp-agustin.github.io#readme",
-  "devDependencies": {
-    "node-sass": "^4.11.0"
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.4"
   }
 }

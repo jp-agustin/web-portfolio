@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+const { items } = Astro.props as { items: CollectionEntry<'work'>[] };
+---
+
+<ul class="list">
+  {items.map(({ id, data }) => (
+    <li>
+      <a class="title" href={`/work/${id}`}>{data.title}</a>
+      <p>{data.outcome}</p>
+      <p class="tags">{data.company} · {data.year} · {data.stack.join(', ')}</p>
+    </li>
+  ))}
+</ul>

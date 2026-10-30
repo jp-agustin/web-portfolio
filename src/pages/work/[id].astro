@@ -1,0 +1,32 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getWork } from '../../content';
+
+export async function getStaticPaths() {
+  const work = await getWork();
+  return work.map((entry, i) => ({ params: { id: entry.id }, props: { entry, next: work[i + 1] ?? work[0] } }));
+}
+
+const { entry, next } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+
+<Base title={data.title} description={data.outcome} type="article">
+  <article>
+    <h1>{data.title}</h1>
+    <dl class="summary-box">
+      <dt>Outcome</dt><dd>{data.outcome}</dd>
+      <dt>Company</dt><dd>{data.company}</dd>
+      <dt>Role</dt><dd>{data.role}</dd>
+      <dt>Team</dt><dd>{data.team}</dd>
+      <dt>Stack</dt><dd>{data.stack.join(', ')}</dd>
+      <dt>When</dt><dd>{data.year} · {data.duration}</dd>
+    </dl>
+    <div class="prose"><Content /></div>
+  </article>
+  {next.id !== entry.id && (
+    <p class="muted small">Next: <a href={`/work/${next.id}`}>{next.data.title}</a></p>
+  )}
+</Base>

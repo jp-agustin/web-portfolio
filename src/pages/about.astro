@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+
+const stack = [
+  { level: 'Production-deep', items: 'Go, Node.js, React, TypeScript, Kafka, Redis, MySQL/TiDB, Docker' },
+  { level: 'Comfortable', items: 'Python, PostgreSQL, Kubernetes, CI/CD, Flutter, YOLO/CUDA' },
+  { level: 'AI tools', items: 'Claude, Cursor, MCP' },
+];
+---
+
+<Base title="About" description="About John Patrick Agustin, senior full-stack engineer and former Engineering Manager.">
+  <h1>About</h1>
+  <div class="prose">
+    <p>I'm John Patrick, a senior full-stack engineer with 8+ years of shipping production systems in Go, React and TypeScript.</p>
+    <p>
+      I started in 5G R&amp;D at Nokia, built software in Melbourne, then led a drone data platform in Singapore. At
+      Ninja Van I joined as a founding engineer on internal tools used across 1,000+ warehouses, and grew into
+      Engineering Manager of the platforms team: chat and notification systems handling hundreds of millions of events a
+      day, with a team across Singapore and India. Along the way I cut notification costs by over 60%, tripled Kafka
+      throughput at peak, and mentored three engineers into senior roles.
+    </p>
+    <p>
+      More recently I led frontend at an AI startup and set up AI-assisted development practices that actually stuck. I
+      also built an on-prem computer vision platform for a freelance client.
+    </p>
+    <p>I'm hands-on first: I write the code, and when needed I lead the team around it.</p>
+
+    <h2>How I work</h2>
+    <ul>
+      <li><strong>Hands-on, even when leading.</strong> I write code every sprint and review a lot. It's how I stay close to the work.</li>
+      <li><strong>Plan before building.</strong> Time spent understanding the problem saves more time later, for people and for AI tools.</li>
+      <li><strong>Targeted changes over rewrites.</strong> If a critical system works, I fix where it hurts instead of starting over.</li>
+      <li><strong>Trust in remote teams.</strong> Most of my teams have been spread across countries. Trust is the default, not something people have to earn first.</li>
+      <li><strong>Grow people through real ownership.</strong> Chances to lead, to share, and time to explore.</li>
+    </ul>
+
+    <h2>Stack</h2>
+    <dl class="summary-box">
+      {stack.map((s) => (<><dt>{s.level}</dt><dd>{s.items}</dd></>))}
+    </dl>
+
+    <h2>Ways to work together</h2>
+    <ul>
+      <li><strong>Contract senior engineering:</strong> Go, Node.js, React, TypeScript; event-driven systems; frontend architecture.</li>
+      <li><strong>AI and platform work:</strong> AI-assisted development setup, computer vision and ML infrastructure, cost and performance optimization.</li>
+      <li><strong>Fractional tech lead:</strong> team setup, mentoring, architecture, and delivery.</li>
+    </ul>
+    <p>
+      Hourly or monthly contracts, part-time retainers, fixed-scope projects, or full-time contracts. I'm also open to
+      the right full-time role. Based in the Philippines (GMT+8): full overlap with Singapore and Australia, and 4+ hours
+      with Europe and the US.
+    </p>
+
+    <h2>Outside client work</h2>
+    <p>I'm launching a food product business and building apps of my own. More on both here soon.</p>
+
+    <h2>Education</h2>
+    <p>BS Computer Engineering, University of the Philippines Diliman</p>
+  </div>
+  <p><a href="/contact">Get in touch</a> · <a href={SITE.linkedin}>LinkedIn</a></p>
+</Base>
