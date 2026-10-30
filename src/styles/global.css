@@ -78,7 +78,15 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
   vertical-align: 0.05em;
 }
 
-/* Header */
+/* Header: sticky, slides away while scrolling down (see Base.astro) */
+.site-header-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  transition: transform 250ms var(--ease);
+}
+.site-header-bar.hide:not(:focus-within) { transform: translateY(-100%); } /* tabbing into the nav brings it back */
 .site-header {
   display: flex;
   flex-wrap: wrap;

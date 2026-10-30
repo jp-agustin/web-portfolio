@@ -57,18 +57,20 @@ const nav = [
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class="site-header wrap">
-      <a class="site-name" href="/">{SITE.name}</a>
-      <nav aria-label="Main">
-        {nav.map((item) => (
-          <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
-            {item.label}
-          </a>
-        ))}
-        <button class="theme-toggle" type="button" aria-label="Switch colour theme" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
-        </button>
-      </nav>
+    <header class="site-header-bar">
+      <div class="site-header wrap">
+        <a class="site-name" href="/">{SITE.name}</a>
+        <nav aria-label="Main">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))}
+          <button class="theme-toggle" type="button" aria-label="Switch colour theme" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
+          </button>
+        </nav>
+      </div>
     </header>
     <main id="main">
       <slot />
@@ -103,6 +105,20 @@ const nav = [
         label();
       });
       matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+
+      // Header hides while scrolling down and returns on any scroll up (keyboard focus is handled in CSS).
+      const bar = document.querySelector<HTMLElement>('.site-header-bar')!;
+      let lastY = scrollY;
+      addEventListener(
+        'scroll',
+        () => {
+          const y = scrollY;
+          if (y > lastY && y > bar.offsetHeight) bar.classList.add('hide');
+          else if (y < lastY) bar.classList.remove('hide');
+          lastY = y;
+        },
+        { passive: true },
+      );
 
       // Staggered entrance per group; content is visible if this never runs (.js gates the hidden state).
       const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
