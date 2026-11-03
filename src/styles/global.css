@@ -1,4 +1,12 @@
 /* Palette: cream page with sand and sage fields, deep teal accent, type "Schibsted Grotesk". Light/dark via light-dark(). */
+/* Self-hosted (OFL) variable font, latin subset, so first paint doesn't wait on a third-party stylesheet */
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/schibsted-grotesk-latin.woff2') format('woff2');
+}
 :root {
   color-scheme: light dark;
   --bg: light-dark(#f5f0e6, #1b1a17);

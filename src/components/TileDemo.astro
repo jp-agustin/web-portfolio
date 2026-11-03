@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import aerial from '../assets/aerial-construction.jpg';
 // Live demo of the slicing from the YOLO article: an 8064×6048 (48 MP) drone frame cut into overlapping tiles.
 const W = 8064;
 const H = 6048;
@@ -39,13 +41,13 @@ const readout = (t: number) =>
   </div>
   <figure class="photo" data-reveal>
     <div class="frame">
-      <img
-        src="/images/aerial-construction.jpg"
-        width="1600"
-        height="1016"
+      <Image
+        src={aerial}
+        widths={[480, 800, 1200, 1600]}
+        sizes="(min-width: 52rem) 60vw, 100vw"
+        format="webp"
+        quality={65}
         alt="Aerial drone photo of a school gymnasium under construction, its steel frame open from above."
-        loading="lazy"
-        decoding="async"
       />
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
         {tiles(START).map(({ x, y }) => <rect x={x} y={y} width={START} height={START} />)}
