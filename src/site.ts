@@ -10,9 +10,9 @@ export const SITE = {
 };
 
 export const WAYS = [
-  { title: 'Hands-on tech lead', text: 'Lead a team or project while writing code: architecture, delivery, mentoring, and working with product.' },
+  { title: 'Hands-on tech lead', text: 'Lead a team or project while writing code: architecture, delivery, team process, mentoring, and working with product.' },
   { title: 'Senior engineering', text: 'Join your team as a senior engineer: Go, Node.js, React, TypeScript; event-driven systems; frontend architecture.' },
-  { title: 'AI and platform work', text: 'AI-assisted development setup, computer vision and ML infrastructure, cost and performance optimization.' },
+  { title: 'AI and platform work', text: 'AI-assisted development setup for teams, and cost and performance optimization for production systems.' },
 ];
 
 // Dates are YYYY-MM. Roles are newest first. `earlier` entries render as compact one-line rows; `work` links case studies.
