@@ -39,6 +39,7 @@ const { class: className } = Astro.props as { class?: string };
       try {
         await navigator.clipboard.writeText(email);
         notify('Email address copied', true);
+        (window as { umami?: { track: (event: string) => void } }).umami?.track('Email copied');
       } catch {
         notify("Couldn't copy. Select the address instead.", false);
       }

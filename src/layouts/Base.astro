@@ -58,6 +58,10 @@ const nav = [
         } catch {}
       })();
     </script>
+    {/* Cookie-less analytics; data-domains keeps local and preview visits out */}
+    {import.meta.env.PROD && (
+      <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="ad2c2033-c2e5-4026-816d-761a9052da69" data-domains="johnpatrickagustin.com"></script>
+    )}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -86,7 +90,7 @@ const nav = [
           <p class="invite">I'd like to hear about it.</p>
           <p class="primary"><CopyEmail /></p>
           <p class="secondary">
-            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" data-umami-event="LinkedIn" data-umami-event-from="footer">LinkedIn →</a>
             <span>© {new Date().getFullYear()} {SITE.name}</span>
           </p>
         </div>

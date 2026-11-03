@@ -9,7 +9,7 @@ const Title = level === 2 ? 'h2' : 'h3';
 <ul class="cases">
   {items.map(({ id, data }) => (
     <li data-reveal>
-      <a class="case" href={`/work/${id}`}>
+      <a class="case" href={`/work/${id}`} data-umami-event="Case study" data-umami-event-slug={id}>
         <div class="fig">
           <strong>{data.figure}</strong>
           <span>{data.figureLabel}</span>
