@@ -5,12 +5,15 @@ const { items } = Astro.props as { items: CollectionEntry<'writing'>[] };
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 ---
 
-<ul class="rows">
+<ul class="rows writing">
   {items.map(({ id, data }) => (
     <li data-reveal>
-      <time class="when" datetime={data.date.toISOString()}>{fmt(data.date)}</time>
+      <span class="when">
+        <time datetime={data.date.toISOString()}>{fmt(data.date)}</time>
+        <span class="topic">{data.pillar}{data.type === 'note' && ' · Note'}</span>
+      </span>
       <span class="what"><a href={`/writing/${id}`}>{data.title}</a></span>
-      <p class="sub">{data.pillar}{data.type === 'note' && ' · Note'} · {data.summary}</p>
+      <p class="sub">{data.summary}</p>
     </li>
   ))}
 </ul>

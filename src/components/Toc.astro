@@ -1,0 +1,9 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+const { headings } = Astro.props as { headings: MarkdownHeading[] };
+---
+
+<nav class="toc" aria-label="On this page">
+  <ul>{headings.filter((h) => h.depth === 2).map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul>
+</nav>

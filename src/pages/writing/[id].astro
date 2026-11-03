@@ -1,15 +1,18 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Toc from '../../components/Toc.astro';
 import { getWriting } from '../../content';
 
 export async function getStaticPaths() {
-  return (await getWriting()).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const writing = await getWriting();
+  return writing.map((entry, i) => ({ params: { id: entry.id }, props: { entry, next: writing[i + 1] ?? writing[0] } }));
 }
 
-const { entry } = Astro.props;
+const { entry, next } = Astro.props;
 const { data } = entry;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const minutes = Math.max(1, Math.round((entry.body ?? '').split(/\s+/).length / 200));
 ---
 
 <Base title={data.title} description={data.summary} type="article">
@@ -18,19 +21,24 @@ const { Content } = await render(entry);
       <h1 class="long" data-reveal>{data.title}</h1>
       <p class="lead" data-reveal>{data.summary}</p>
       <aside data-reveal>
-        <p class="dot">{data.pillar}</p>
+        <p>{data.pillar}</p>
         <p>
           <time datetime={data.date.toISOString()}>
-            {data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            {data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
           </time>
+          {' · '}{minutes} min read
         </p>
       </aside>
     </header>
     <div class="wrap grid">
+      <Toc headings={headings} />
       <div class="prose measure body-col" data-reveal><Content /></div>
     </div>
   </article>
-  <nav class="wrap band" aria-label="Writing">
-    <a class="next" href="/writing"><span>Keep reading</span><strong>All writing →</strong></a>
+  <nav class="wrap band next-row" aria-label="More writing">
+    {next.id !== entry.id && (
+      <a class="next" href={`/writing/${next.id}`}><span>Next {next.data.type}</span><strong>{next.data.title} →</strong></a>
+    )}
+    <a class="all" href="/writing">All writing</a>
   </nav>
 </Base>
