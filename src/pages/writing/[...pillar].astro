@@ -1,12 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import WritingList from '../../components/WritingList.astro';
-import { getWriting } from '../../content';
+import { getWriting, TOPIC_FILTER_MIN } from '../../content';
 
 const slug = (p: string) => p.toLowerCase();
 
 export async function getStaticPaths() {
-  const pillars = [...new Set((await getWriting()).map((w) => w.data.pillar))];
+  const writing = await getWriting();
+  const pillars = writing.length >= TOPIC_FILTER_MIN ? [...new Set(writing.map((w) => w.data.pillar))] : [];
   return [{ params: { pillar: undefined } }, ...pillars.map((p) => ({ params: { pillar: p.toLowerCase() } }))];
 }
 
@@ -22,7 +23,7 @@ const items = pillar ? all.filter((w) => slug(w.data.pillar) === pillar) : all;
     <p class="lead" data-reveal>Engineering deep-dives, lessons from leading teams, and what I'm learning about AI.</p>
   </section>
   <section class="wrap">
-    {all.length >= 6 && ( // a filter only helps once the list is longer than a screen
+    {all.length >= TOPIC_FILTER_MIN && (
     <ul class="chips" aria-label="Filter by topic">
       <li><a href="/writing" aria-current={!pillar ? 'page' : undefined}>All</a></li>
       {pillars.map((p) => (

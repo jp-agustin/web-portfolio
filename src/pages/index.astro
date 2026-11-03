@@ -37,12 +37,10 @@ const writing = (await getWriting()).slice(0, 3);
 
   {writing.length > 0 && (
     <section class="f-sage band">
-      <div class="wrap grid split">
+      <div class="wrap">
         <h2 data-reveal>Recent writing</h2>
-        <div class="content">
-          <WritingList items={writing} />
-          <p data-reveal><a href="/writing">All writing →</a></p>
-        </div>
+        <WritingList items={writing} />
+        <p data-reveal><a href="/writing">All writing →</a></p>
       </div>
     </section>
   )}

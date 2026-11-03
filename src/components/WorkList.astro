@@ -1,7 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-const { items } = Astro.props as { items: CollectionEntry<'work'>[] };
+// Level 3 under a section heading (Home), 2 when the list is the page's main content (Work).
+const { items, level = 3 } = Astro.props as { items: CollectionEntry<'work'>[]; level?: 2 | 3 };
+const Title = level === 2 ? 'h2' : 'h3';
 ---
 
 <ul class="cases">
@@ -13,7 +15,7 @@ const { items } = Astro.props as { items: CollectionEntry<'work'>[] };
           <span>{data.figureLabel}</span>
         </div>
         <div class="body">
-          <h3>{data.title}</h3>
+          <Title class="title">{data.title}</Title>
           <p>{data.outcome}</p>
           <p class="tags">{data.company} · {data.year} · {data.stack.join(', ')}</p>
         </div>

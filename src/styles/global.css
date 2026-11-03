@@ -163,12 +163,12 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
 }
 .case .fig span { display: block; margin-top: 0.6rem; color: var(--muted); font-size: var(--step-small); max-width: 22ch; }
 .case .body { grid-column: 5 / -1; align-self: end; }
-.case h3 { font-size: clamp(1.375rem, 0.9rem + 1.2vw, 2rem); }
-.case h3::after { content: '\00a0→'; display: inline-block; transition: transform 300ms var(--ease); }
+.case .title { font-size: clamp(1.375rem, 0.9rem + 1.2vw, 2rem); margin: 0; }
+.case .title::after { content: '\00a0→'; display: inline-block; transition: transform 300ms var(--ease); }
 .case p { margin: 0.75rem 0 0; max-width: 52ch; }
 .case .tags { color: var(--muted); font-size: var(--step-small); }
 .case:hover .fig strong, .case:focus-visible .fig strong { transform: scale(1.03); color: var(--accent); }
-.case:hover h3::after, .case:focus-visible h3::after { transform: translateX(0.3em); }
+.case:hover .title::after, .case:focus-visible .title::after { transform: translateX(0.3em); }
 @media (max-width: 40rem) {
   .case { padding-block: 1.75rem; }
   .case .fig, .case .body { grid-column: 1 / -1; }

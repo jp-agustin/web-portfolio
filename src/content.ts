@@ -7,3 +7,6 @@ export const getWriting = async () =>
   (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
+
+// Topic filters (chips and /writing/<topic> pages) only help once the list is longer than a screen.
+export const TOPIC_FILTER_MIN = 6;

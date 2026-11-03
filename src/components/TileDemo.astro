@@ -29,9 +29,9 @@ const readout = (t: number) =>
       fit the model and they disappear. Cut it into tiles and they survive.
     </p>
     <fieldset hidden>
-      <legend class="sr-only">Tile size</legend>
+      <legend>Tile size</legend>
       {SIZES.map((s) => (
-        <label><input type="radio" name="tile" value={s} checked={s === START} /> {s} px tiles</label>
+        <label><input type="radio" name="tile" value={s} checked={s === START} /> {s} px</label>
       ))}
     </fieldset>
     <p class="readout" aria-live="polite">{readout(START)}</p>
@@ -86,7 +86,8 @@ const readout = (t: number) =>
   .frame img, .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .frame img { object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(0.9); }
   .frame :global(rect) { fill: #8fd3cc; fill-opacity: 0.08; stroke: #8fd3cc; stroke-width: 16; transition: opacity 200ms; }
-  fieldset { display: flex; flex-wrap: wrap; gap: 0.5rem; border: 0; padding: 0; margin: 0 0 1rem; }
+  fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; border: 0; padding: 0; margin: 0 0 1rem; }
+  legend { padding: 0; margin-bottom: 0.5rem; color: var(--muted); font-size: var(--step-small); }
   label {
     position: relative;
     display: inline-flex;
@@ -104,8 +105,11 @@ const readout = (t: number) =>
   label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
   input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
   .readout { font-weight: 600; margin: 0 0 1.5rem; }
+  /* Phones: the photo sits between the intro and the controls, so changing the size shows its effect on screen */
   @media (max-width: 52rem) {
-    .text, .frame { grid-column: 1 / -1; }
-    .frame { margin-top: 2rem; }
+    .text { display: contents; }
+    .text > *, .frame { grid-column: 1 / -1; }
+    .frame { order: 1; margin-bottom: 1.5rem; }
+    fieldset, .readout, .small { order: 2; }
   }
 </style>
