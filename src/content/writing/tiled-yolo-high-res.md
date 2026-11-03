@@ -1,14 +1,14 @@
 ---
-title: Finding tiny defects in 20-megapixel drone images with YOLO and SAHI
+title: Finding tiny defects in 48-megapixel drone images with YOLO and SAHI
 summary: Downscaling hides small defects and tiling cuts big ones in half. How running both, plus a few slicing rules, handles both.
 pillar: Engineering
 type: article
 date: 2026-10-30
 ---
 
-A typical drone inspection photo is 5472 × 3648 pixels, about 20 megapixels. The defects that matter, like a hairline crack or an early patch of corrosion, can be a few dozen pixels across.
+Drone inspection photos here ran from about 20 to 48 megapixels, up to 8064 × 6048 pixels. The defects that matter, like a hairline crack or an early patch of corrosion, can be a few dozen pixels across.
 
-Object detection models don't see 20 megapixels. YOLO trains and runs at something like 640 or 1024 pixels on the long side. Feed it the full photo and it gets downscaled 5 to 8 times, and a 40-pixel crack becomes 5 to 8 pixels. That's barely there.
+Object detection models don't see 48 megapixels. YOLO trains and runs at something like 640 or 1024 pixels on the long side. Feed it a full 48 MP photo and it gets downscaled 8 to 13 times, and a 40-pixel crack becomes 3 to 5 pixels. That's barely there.
 
 This post covers how I dealt with that while moving a drone inspection platform from a cloud vision service to on-prem GPUs ([case study](/work/on-prem-vision-ai)). The stack was Ultralytics YOLO11 for detection and <a href="https://github.com/obss/sahi" target="_blank" rel="noopener noreferrer">SAHI</a> (Slicing Aided Hyper Inference) for tiling.
 

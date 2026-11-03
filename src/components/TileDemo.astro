@@ -1,7 +1,7 @@
 ---
-// Live demo of the slicing from the YOLO article: a 5472×3648 drone frame cut into overlapping tiles.
-const W = 5472;
-const H = 3648;
+// Live demo of the slicing from the YOLO article: an 8064×6048 (48 MP) drone frame cut into overlapping tiles.
+const W = 8064;
+const H = 6048;
 const OVERLAP = 0.2;
 const MODEL = 1024; // model input size
 const DEFECT = 40; // px, a small crack in the full frame
@@ -25,7 +25,7 @@ const readout = (t: number) =>
   <div class="text">
     <h2 data-reveal>Slicing a drone frame</h2>
     <p class="intro" data-reveal>
-      Drone photos are about 20 megapixels, and the defects that matter can be a few dozen pixels wide. Shrink the frame to
+      Drone photos run up to 48 megapixels, and the defects that matter can be a few dozen pixels wide. Shrink the frame to
       fit the model and they disappear. Cut it into tiles and they survive.
     </p>
     <fieldset hidden>
@@ -82,7 +82,7 @@ const readout = (t: number) =>
 <style>
   .text { grid-column: 1 / 5; align-self: center; }
   .intro { margin: 0 0 1.5rem; }
-  .frame { grid-column: 5 / -1; position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink); }
+  .frame { grid-column: 5 / -1; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--ink); }
   .frame img, .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .frame img { object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(0.9); }
   .frame :global(rect) { fill: #8fd3cc; fill-opacity: 0.08; stroke: #8fd3cc; stroke-width: 16; transition: opacity 200ms; }
