@@ -8,7 +8,6 @@ year: 2023–2025
 role: Engineering Manager / Tech Lead
 team: My team of 5–7 engineers, with product, business, and external partners
 stack: [Go, Java, Kafka]
-duration: Ongoing, across my time leading the team
 featured: true
 order: 1
 ---
