@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE, WAYS } from '../site';
+import { WAYS } from '../site';
 
 const stack = [
   { level: 'Production-deep', items: 'Go, Node.js, React, TypeScript, Kafka, Redis, MySQL/TiDB, Docker' },
@@ -23,7 +23,7 @@ const principles = [
     <aside data-reveal>
       <p class="dot">Available now</p>
       <p>Philippines (GMT+8)</p>
-      <p>Led teams across Asia</p>
+      <p>BS Computer Engineering, UP Diliman</p>
     </aside>
   </section>
 
@@ -36,7 +36,8 @@ const principles = [
       </p>
       <p>
         We owned the chat and notification systems that handle hundreds of millions of events a day. I still shipped code
-        every sprint, and together we cut notification costs by over 60% and tripled Kafka throughput at peak.
+        every sprint, and together we <a href="/work/notification-costs">cut notification costs by over 60%</a> and{' '}
+        <a href="/work/chat-notifications-rearchitecture">tripled Kafka throughput at peak</a>.
       </p>
       <p>
         More recently I led a frontend team of four across Southeast Asia at an AI startup, and built an on-prem computer
@@ -50,11 +51,23 @@ const principles = [
 
   <section class="band wrap grid split">
     <h2 data-reveal>How I work</h2>
-    <ul class="rows stacked content">
+    <ul class="rows stacked cols content">
       {principles.map((p) => (
         <li data-reveal>
           <span class="what">{p.title}</span>
           <p class="sub">{p.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="pb wrap grid split">
+    <h2 data-reveal>Stack</h2>
+    <ul class="rows stack content">
+      {stack.map((s) => (
+        <li data-reveal>
+          <span class="when">{s.level}</span>
+          <span class="what">{s.items}</span>
         </li>
       ))}
     </ul>
@@ -74,29 +87,9 @@ const principles = [
         </ul>
         <p data-reveal>
           Hourly or monthly contracts, part-time retainers, fixed-scope projects, or full-time contracts. I'm also open to
-          the right full-time role. Based in the Philippines, {SITE.timezone}{' '}
-          <a href="/contact">Get in touch →</a>
+          the right full-time role.
         </p>
       </div>
-    </div>
-  </section>
-
-  <section class="band wrap grid split">
-    <h2 data-reveal>Stack</h2>
-    <ul class="rows content">
-      {stack.map((s) => (
-        <li data-reveal>
-          <span class="when">{s.level}</span>
-          <span class="what">{s.items}</span>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="wrap grid split">
-    <h2 data-reveal>Education</h2>
-    <div class="content">
-      <p class="lead" data-reveal>BS Computer Engineering, University of the Philippines Diliman</p>
     </div>
   </section>
 </Base>
