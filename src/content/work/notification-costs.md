@@ -1,6 +1,6 @@
 ---
 title: Cutting notification costs across Southeast Asia
-outcome: 60%+ lower notification costs, with better reliability
+outcome: More reliable delivery, and fewer, clearer messages for customers
 figure: "60%+"
 figureLabel: lower notification costs
 company: Ninja Van

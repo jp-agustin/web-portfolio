@@ -10,15 +10,17 @@ export async function getStaticPaths() {
 
 const { entry, next } = Astro.props;
 const { data } = entry;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const sections = headings.filter((h) => h.depth === 2);
+// The headline number lives in the figure, so the page lead leads with it.
+const lead = `${data.figure} ${data.figureLabel}. ${data.outcome}.`;
 ---
 
-<Base title={data.title} description={data.outcome} type="article">
+<Base title={data.title} description={lead} type="article">
   <article>
     <header class="page-head wrap grid">
       <h1 class="long" data-reveal>{data.title}</h1>
-      <p class="lead" data-reveal>{data.outcome}</p>
-      <aside data-reveal><strong>{data.figure}</strong>{data.figureLabel}</aside>
+      <p class="lead" data-reveal>{lead}</p>
     </header>
     <section class="facts f-sand" aria-label="Summary">
       <dl class="summary wrap">
@@ -30,12 +32,16 @@ const { Content } = await render(entry);
       </dl>
     </section>
     <div class="band wrap grid">
+      <nav class="toc" aria-label="On this page">
+        <ul>{sections.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul>
+      </nav>
       <div class="prose measure body-col" data-reveal><Content /></div>
     </div>
   </article>
-  {next.id !== entry.id && (
-    <nav class="wrap" aria-label="Next case study">
+  <nav class="wrap next-row" aria-label="More case studies">
+    {next.id !== entry.id && (
       <a class="next" href={`/work/${next.id}`}><span>Next case study</span><strong>{next.data.title} →</strong></a>
-    </nav>
-  )}
+    )}
+    <a class="all" href="/work">All work</a>
+  </nav>
 </Base>

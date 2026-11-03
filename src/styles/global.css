@@ -215,7 +215,7 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
 /* Long-form content */
 .prose { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
 .prose > :first-child { margin-top: 0; }
-.prose h2 { font-size: var(--step-lead); letter-spacing: -0.03em; margin: 3.5rem 0 1rem; }
+.prose h2 { font-size: var(--step-lead); letter-spacing: -0.03em; margin: 3.5rem 0 1rem; scroll-margin-top: 6rem; }
 .prose h3 { font-size: var(--step-body); letter-spacing: -0.01em; margin: 2rem 0 0.5rem; }
 .prose strong { font-weight: 600; }
 .prose li { margin-block: 0.35rem; }
@@ -235,8 +235,27 @@ h3 { font-size: var(--step-lead); letter-spacing: -0.03em; line-height: 1.05; }
   margin: 0;
 }
 .summary dt { color: var(--muted); font-size: var(--step-small); margin-bottom: 0.25rem; }
-.summary dd { margin: 0; font-weight: 600; }
+.summary dd { margin: 0; }
 .facts { padding-block: clamp(2rem, 1rem + 3vw, 3.5rem); }
+/* Phones: label beside value, so the strip stays short */
+@media (max-width: 40rem) {
+  .summary { grid-template-columns: 1fr; gap: 0.75rem; }
+  .summary > div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: baseline; }
+  .summary dt { margin: 0; }
+}
+
+/* Case study sections, beside the text on wide screens (the column is empty otherwise) */
+.toc { display: none; }
+@media (min-width: 64rem) {
+  .toc { display: block; grid-column: 1 / 4; grid-row: 1; align-self: start; position: sticky; top: 6rem; padding-top: 0.5rem; }
+  .toc ul { list-style: none; margin: 0; padding: 0; }
+  .toc li + li { margin-top: 0.5rem; }
+  .toc a { color: var(--muted); text-decoration: none; font-size: var(--step-small); }
+  .toc a:hover { color: var(--accent); }
+}
+
+.next-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1.5rem var(--gutter); }
+.next-row .all { color: var(--muted); }
 
 .next { display: block; text-decoration: none; }
 .next span { display: block; color: var(--muted); margin-bottom: 0.5rem; }

@@ -1,6 +1,6 @@
 ---
 title: From founding engineer to Engineering Manager
-outcome: Internal tools used across 1,000+ warehouses, 3 engineers mentored to senior, a 50+ talk tech-sharing program
+outcome: 3 engineers mentored to senior, and a tech-sharing program of 50+ talks
 figure: "1,000+"
 figureLabel: warehouses using tools we built
 company: Ninja Van
