@@ -14,7 +14,7 @@ const work = defineCollection({
     role: z.string(),
     team: z.string(),
     stack: z.array(z.string()),
-    duration: z.string(),
+    duration: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number(),
   }),

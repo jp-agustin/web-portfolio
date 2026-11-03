@@ -1,6 +1,6 @@
 ---
 title: From founding engineer to Engineering Manager
-outcome: 3 engineers mentored to senior, and a tech-sharing program of 50+ talks
+outcome: 3 engineers mentored to senior, and a company-wide frontend standards initiative
 figure: "1,000+"
 figureLabel: warehouses using tools we built
 company: Ninja Van
@@ -8,7 +8,6 @@ year: 2020–2025
 role: Software Engineer → Senior Software Engineer → Engineering Manager / Tech Lead
 team: Grew from one of two engineers on a new team to leading 5–7 engineers across Singapore and India
 stack: [React, Node.js, Go, Flutter, Electron]
-duration: Dec 2020 – Oct 2025
 featured: true
 order: 2
 ---
@@ -21,28 +20,46 @@ After observing for a week or two, I proposed some changes so we could align bet
 
 From there we built platforms used by regional offices and 1,000+ warehouses across Southeast Asia, including KPI management and claims systems, owning each one end to end from UX design to full-stack implementation and stakeholder alignment.
 
-I also took over the **printer management system** used in every warehouse. It was a legacy Electron app, separate from everything else, and it meant learning printer command languages. Almost nobody wanted to touch it. I kept leading it solo for years, including as EM.
+## Senior engineer: taking on what others wouldn't (2021–2022)
 
-## Senior engineer: leading through the work (2021–2022)
+As a senior engineer, I took over systems beyond our team's own:
 
-- Designed and delivered high-throughput systems across chat, label printing, and external-facing products (React, Node.js, Go, Flutter)
-- Led and mentored 3–5 engineers and interns through reviews and coaching
-- Improved reliability of Kafka, Redis, and TiDB-based systems behind critical workflows
+- **Printer management.** I took over the system that runs the printers in every warehouse. It was a legacy Electron app, separate from everything else, and it meant learning printer command languages. Almost nobody wanted to touch it. I worked with the IT and operations teams on its upgrades, and kept leading it solo for years, including as EM.
+- **The sockets service.** It was a legacy service owned by the infra team and used across our services, and reliability had become an issue. I took it over and led its upgrade and rewrite: a cleaner code structure, updated libraries, better auth handling, and Kafka support. Messages went out reliably again, with fewer incidents.
 
-**Reviving tech sharing.** When I joined, a few frontend engineers shared what they'd learned from time to time, but only when someone thought of it, and eventually it stopped. I liked the idea, so I took it over and changed the format to make it for the whole tech team. It started with frontend talks and grew to cover every domain, even IT.
+Along the way, I led and mentored 3–5 engineers and interns through reviews and coaching.
 
-It turned out plenty of people wanted to share. They just needed a platform and someone to organize it and help shape their topics. It grew into a quarterly program of 50+ talks with contributors from five countries: the IT team on infosec, product designers on their design workflows, and even our CTO on his drone-building hobby.
+**Reviving tech sharing.** When I joined, a few frontend engineers shared what they'd learned from time to time, but only when someone thought of it, and eventually it stopped. I liked the idea, so I took it over and opened it up to the whole tech team. It started with frontend talks and grew to cover every domain, even IT.
+
+It turned out plenty of people wanted to share. They just needed a platform and someone to organize it and help shape their topics. It became a quarterly staple for as long as I was there, with 50+ talks from contributors in five countries: the IT team on infosec, product designers on their design workflows, and even our CTO on his drone-building hobby.
 
 ## Engineering Manager (2023–2025)
 
-I led 5–7 engineers across Singapore and India in a hybrid-remote setup, owning the chat and notification systems (see the [cost](/work/notification-costs) and [throughput](/work/chat-notifications-rearchitecture) case studies). I also led the company-wide Frontend Standardization initiative, working with engineers across Southeast Asia, and the architecture and exploration of LLM-powered agent assistance using knowledge bases, SOPs, and templates.
+As the team grew, I was already leading, mentoring, and coaching much of it. In 2023, my senior EM promoted me to Engineering Manager and handed over his other team: chat and notifications. The job added the parts of management that don't show up in code: hiring (technical and behavioural interviews), 1:1s, coaching, and performance reviews.
 
-**Mentoring.** Three junior engineers on my team grew into senior roles. What worked was consistent coaching: understanding each person's strengths and weaknesses and finding where they could make the biggest impact. I gave them chances to lead within the team, to share with the wider tech team, and time to explore.
+I led 5–7 engineers across Singapore and India in a hybrid-remote setup, owning the chat and notification systems (see the [cost](/work/notification-costs) and [throughput](/work/chat-notifications-rearchitecture) case studies).
 
-**Leading without being in the same room.** For my own team, the key was trust. When you don't work side by side, you have to build an environment where trust is the default. For the standardization initiative, the challenge was different: contributors came from other teams as volunteers, with their own priorities, so time and capacity were always the constraint.
+**Mentoring.** Three engineers I mentored grew from junior to senior roles. What worked was consistent coaching: understanding each person's strengths and weaknesses and finding where they could make the biggest impact, then giving them room to lead. One implemented our Kafka changes and presented them to the whole tech team. One switched to frontend from scratch. One, still a junior at the time, led part of the Frontend Standardization initiative: the bootstrap and templates.
 
-**Staying hands-on.** I still wrote code every sprint. I took the work that was important but wouldn't add much to the team's learning, like integrating new providers, so the team could spend their time on what helped them grow. I also kept leading solo projects like the printer management system.
+**Staying hands-on.** I still wrote code every sprint. I took the work that was important but wouldn't add much to the team's learning, like integrating new providers, so the team could spend their time on what helped them grow.
+
+## Frontend Standardization (2022–2025)
+
+Our tech team had an engineering excellence program, but it focused almost entirely on backend services. Frontend never had the same attention, and as more teams collaborated across each other's frontends, the gaps showed.
+
+I started and led a company-wide initiative to standardize how we work on the frontend, so teams could work across each other's projects more easily. Senior frontend engineers from across the tech team volunteered to lead most of the parts:
+
+- **Monitoring**, so frontend issues were visible the way backend ones already were
+- **A shared design system**
+- **Standards and guidelines** for security, coding, and more
+- **Bootstrap and templates**, so new frontend projects started from the same base. A junior engineer on my team led this one.
+
+The senior engineers weren't on my team, and they led this alongside their own teams' priorities, so time and capacity were always the constraint.
+
+It stuck. Teams adopted the base standards, and new projects started from the bootstrap. The design system grew into its own team, with a dedicated product designer and engineers, and our products started using it, especially the client-facing ones.
 
 ## What I learned
 
-The hardest part was balancing coding and leading. I was used to being hands-on, and over time I realized the team needed me more in other areas. I still write code, and I review a lot. It's how I stay close to the work and keep up to date.
+- **Moving from coding to leading was the hardest part.** I was used to being hands-on, and over time I realized the team needed me more for unblocking, planning, and coaching than for writing code.
+- **Know each person's strengths and weaknesses.** Putting people where they make the biggest impact is where a team's efficiency comes from.
+- **There's no fixed process, only guidelines.** What works is adapting them to how your team works best.

@@ -28,7 +28,7 @@ const lead = `${data.figure} ${data.figureLabel}. ${data.outcome}.`;
         <div><dt>Role</dt><dd>{data.role}</dd></div>
         <div><dt>Team</dt><dd>{data.team}</dd></div>
         <div><dt>Stack</dt><dd>{data.stack.join(', ')}</dd></div>
-        <div><dt>When</dt><dd>{data.year} · {data.duration}</dd></div>
+        <div><dt>When</dt><dd>{data.year}{data.duration && ` · ${data.duration}`}</dd></div>
       </dl>
     </section>
     <div class="band wrap grid">
